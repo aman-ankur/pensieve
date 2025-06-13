@@ -1,0 +1,187 @@
+# ⚙️ Technical Specification - Pensieve
+
+## 🏗️ System Architecture
+
+### **High-Level Architecture**
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   File Watcher  │ -> │  AI Processor   │ -> │ Summary Storage │
+│   (watchdog)    │    │   (Ollama)      │    │  (Local Files)  │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         |                       |                       |
+         v                       v                       v
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│ Meeting Detect  │    │ Content Parser  │    │ Web Interface   │
+│ New Transcripts │    │ Speaker/Actions │    │ (Future Phase)  │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+```
+
+## 🔧 Technology Stack
+
+### **Core Components**
+- **Language**: Python 3.9+
+- **File Monitoring**: `watchdog` library
+- **AI Engine**: Ollama + Llama 3.1 8B
+- **Text Processing**: `re`, `datetime`, custom parsers
+- **Storage**: Local filesystem (Markdown)
+- **Logging**: Python `logging` module
+
+### **Dependencies**
+```python
+# requirements.txt
+watchdog>=3.0.0          # File system monitoring
+requests>=2.31.0         # HTTP requests to Ollama
+python-dateutil>=2.8.0   # Date parsing
+pyyaml>=6.0             # Configuration files
+rich>=13.0.0            # Beautiful terminal output
+```
+
+## 📁 Project Structure
+
+```
+pensieve/
+├── src/
+│   ├── __init__.py
+│   ├── main.py                    # Entry point & orchestrator
+│   ├── monitor/
+│   │   ├── __init__.py
+│   │   ├── file_watcher.py        # Zoom folder monitoring
+│   │   └── transcript_detector.py # New file detection
+│   ├── processing/
+│   │   ├── __init__.py
+│   │   ├── transcript_parser.py   # Parse Zoom transcripts
+│   │   ├── ai_summarizer.py       # Ollama integration
+│   │   └── content_extractor.py   # Action items, decisions
+│   ├── storage/
+│   │   ├── __init__.py
+│   │   ├── file_manager.py        # Summary organization
+│   │   └── metadata_handler.py    # Meeting metadata
+│   └── utils/
+│       ├── __init__.py
+│       ├── config.py              # Configuration management
+│       ├── logger.py              # Logging setup
+│       └── helpers.py             # Utility functions
+├── config/
+│   ├── settings.yaml              # Main configuration
+│   └── prompts/
+│       ├── summary_template.txt   # AI prompt templates
+│       └── action_extraction.txt
+├── memory-bank/                   # Documentation
+├── summaries/                     # Generated summaries
+├── tests/                         # Unit tests
+├── requirements.txt
+└── README.md
+```
+
+## 🔍 Data Flow
+
+### **1. File Detection**
+```
+Monitor: ~/Documents/Zoom/*/meeting_saved_closed_caption.txt
+Trigger: New file creation or modification
+Filter: Only process files > 1KB (avoid empty files)
+```
+
+### **2. Transcript Parsing**
+```python
+# Input Format:
+[Speaker Name] HH:MM:SS
+[Content...]
+
+# Parsed Output:
+{
+    "meeting_id": "2025-06-13_14-54-20_Multi-supplier-discussions",
+    "title": "Multi supplier discussions with Vito",
+    "date": "2025-06-13",
+    "duration": "45 minutes",
+    "participants": ["Aman Ankur", "Vito Corleone"],
+    "segments": [
+        {
+            "speaker": "Aman Ankur",
+            "timestamp": "14:54:20",
+            "content": "..."
+        }
+    ]
+}
+```
+
+### **3. AI Processing Pipeline**
+1. **Content Chunking**: Split long transcripts (>2 hours) into 30-min segments
+2. **Context Building**: Add meeting metadata to prompts
+3. **Summarization**: Generate structured summaries via Ollama
+4. **Post-processing**: Extract and format action items
+5. **Quality Check**: Flag low-confidence summaries
+
+### **4. Output Generation**
+```markdown
+# Meeting Summary: [Title] - [Date]
+
+**Duration**: 45 minutes  
+**Participants**: Aman Ankur, Vito Corleone  
+**Type**: Team Alignment  
+
+## 📋 Key Discussion Points
+- [AI-generated paragraph summaries]
+
+## ✅ Action Items
+- [ ] **@Aman** - Review supplier integration docs - **Due: 2025-06-20** - *Priority: High*
+- [ ] **@Vito** - Schedule followup with team - **Due: Next week** - *Priority: Medium*
+
+## 🎯 Decisions Made
+- [Key decisions with context]
+
+## ⏭️ Next Steps
+- [Follow-up items and future meetings]
+
+---
+*Generated by Pensieve on 2025-06-13 at 15:02*  
+*Source: ~/Documents/Zoom/2025-06-13 14.54.20 Multi supplier discussions with Vito/*
+```
+
+## 🔒 Security & Privacy
+
+### **Data Handling**
+- **Local Processing**: All data remains on local machine
+- **No Network Calls**: Except to local Ollama instance (localhost:11434)
+- **File Permissions**: Summaries inherit source file permissions
+- **Encryption**: Optional encryption for sensitive meetings
+
+### **Error Handling**
+- **Graceful Degradation**: Continue processing other files if one fails
+- **Retry Logic**: Retry failed AI requests up to 3 times
+- **Backup Strategy**: Keep original transcripts untouched
+- **Logging**: Comprehensive logs for debugging
+
+## ⚡ Performance Specifications
+
+### **Processing Speed**
+- **Small meetings (<30 min)**: 30-60 seconds
+- **Medium meetings (30-60 min)**: 1-2 minutes  
+- **Large meetings (60+ min)**: 2-5 minutes
+- **Parallel Processing**: Handle multiple meetings simultaneously
+
+### **Resource Usage**
+- **RAM**: 4-6GB during processing (Ollama model)
+- **CPU**: Moderate usage during AI inference
+- **Storage**: ~1MB per summary, 100MB per 100 meetings
+- **Network**: None (local processing only)
+
+## 🧪 Testing Strategy
+
+### **Unit Tests**
+- Transcript parsing accuracy
+- AI prompt generation
+- File organization logic
+- Error handling scenarios
+
+### **Integration Tests** 
+- End-to-end processing pipeline
+- Ollama API integration
+- File watcher functionality
+- Multi-language content handling
+
+### **Performance Tests**
+- Large file processing (2+ hours)
+- Concurrent meeting processing
+- Memory usage monitoring
+- Error recovery testing 
