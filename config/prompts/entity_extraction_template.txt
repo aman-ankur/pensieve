@@ -76,9 +76,9 @@ Use simple bullet points. Extract terms EXACTLY as mentioned in the transcript.
 **Example - GOOD:**
 - multiplier system
 - service-based architecture
-- Matteo - proposing architectural approach
+- Speaker A - proposing architectural approach
 - testing complexity concerns
-- Booking.com flights revenue
+- Company flights revenue
 
 **Example - BAD:**
 - the team discussed various options

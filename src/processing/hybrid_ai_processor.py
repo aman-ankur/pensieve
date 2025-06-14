@@ -180,10 +180,10 @@ class QualityAssessor:
         
         # Weighted combination
         overall = (
-            tech_score * config.technical_content +
-            action_score * config.action_items +
-            metrics.business_context_score * config.business_context +
-            metrics.clarity_score * config.clarity
+            tech_score * config["technical_content"] +
+            action_score * config["action_items"] +
+            metrics.business_context_score * config["business_context"] +
+            metrics.clarity_score * config["clarity"]
         )
         
         return min(overall, 1.0)
@@ -254,10 +254,30 @@ class HybridAIProcessor:
         self.logger.info("Hybrid AI Processor initialized")
     
     def _load_prompt_templates(self) -> None:
-        """Load prompt templates for different providers."""
+        """Load prompt templates for different providers and meeting types."""
         self.prompt_templates = {}
+        self.meeting_type_templates = {}
         
         try:
+            # Load meeting-type-specific templates
+            meeting_types = ['one_on_one', 'team_meeting', 'alignment', 'interview', 'all_hands']
+            
+            for meeting_type in meeting_types:
+                template_path = Path(f"config/prompts/{meeting_type}_template.txt")
+                if template_path.exists():
+                    with open(template_path, 'r') as f:
+                        self.meeting_type_templates[meeting_type] = f.read()
+                        self.logger.info(f"Loaded specialized template for {meeting_type}")
+            
+            # Load fallback concise template for meeting types without specialized templates
+            concise_template_path = Path("config/prompts/concise_summary_template.txt")
+            if concise_template_path.exists():
+                with open(concise_template_path, 'r') as f:
+                    concise_template = f.read()
+                    self.meeting_type_templates['fallback'] = concise_template
+                    self.logger.info("Loaded fallback concise template")
+            
+            # Load provider-specific templates (legacy support)
             # Claude template
             claude_template_path = Path("config/prompts/claude_summary_template.txt")
             if claude_template_path.exists():
@@ -276,8 +296,8 @@ class HybridAIProcessor:
                 with open(entity_template_path, 'r') as f:
                     self.prompt_templates['entity_extraction'] = f.read()
             
-            # Fallback to original template
-            if not self.prompt_templates:
+            # Final fallback to original template
+            if not self.prompt_templates and not self.meeting_type_templates:
                 fallback_path = Path("config/prompts/summary_template.txt")
                 if fallback_path.exists():
                     with open(fallback_path, 'r') as f:
@@ -286,7 +306,7 @@ class HybridAIProcessor:
                         self.prompt_templates['claude'] = template
                         self.prompt_templates['ollama'] = template
             
-            self.logger.info(f"Loaded {len(self.prompt_templates)} prompt templates")
+            self.logger.info(f"Loaded {len(self.prompt_templates)} provider templates and {len(self.meeting_type_templates)} meeting-type templates")
             
         except Exception as e:
             self.logger.error(f"Failed to load prompt templates: {e}")
@@ -328,7 +348,7 @@ class HybridAIProcessor:
             
             # Step 3: Select appropriate prompt template and provider
             prompt_template = self._select_prompt_template(context)
-            formatted_prompt = self._format_prompt(prompt_template, metadata)
+            formatted_prompt = self._format_prompt(prompt_template, metadata, transcript_content)
             
             # Step 4: Process with AI provider manager
             ai_response = self.ai_manager.process_with_fallback(
@@ -406,16 +426,35 @@ class HybridAIProcessor:
             )
     
     def _select_prompt_template(self, context: ProcessingContext) -> str:
-        """Select the appropriate prompt template based on context."""
-        # Check for provider preference based on meeting type
-        meeting_config = getattr(self.config.meeting_types, context.meeting_type.lower().replace(' ', '_'), None)
+        """Select the appropriate prompt template based on meeting type and context."""
+        
+        # First priority: Meeting-type-specific templates
+        meeting_type_key = context.meeting_type.lower().replace(' ', '_')
+        
+        # Map strategy/alignment meetings to alignment template
+        if 'strategy' in meeting_type_key or 'planning' in meeting_type_key:
+            meeting_type_key = 'alignment'
+        
+        # Check for meeting-type-specific template
+        if meeting_type_key in self.meeting_type_templates:
+            self.logger.info(f"Using specialized template for {meeting_type_key}")
+            return self.meeting_type_templates[meeting_type_key]
+        
+        # Second priority: Use fallback meeting template
+        if 'fallback' in self.meeting_type_templates:
+            self.logger.info(f"Using fallback template for {meeting_type_key}")
+            return self.meeting_type_templates['fallback']
+        
+        # Third priority: Legacy provider-based templates
+        meeting_config = getattr(self.config.meeting_types, meeting_type_key, None)
         
         if meeting_config and hasattr(meeting_config, 'preferred_provider'):
             preferred = meeting_config.preferred_provider
             if preferred in self.prompt_templates:
+                self.logger.info(f"Using legacy {preferred} template for {meeting_type_key}")
                 return self.prompt_templates[preferred]
         
-        # Default selection logic
+        # Final fallback: Default provider selection
         if 'claude' in self.prompt_templates:
             return self.prompt_templates['claude']
         elif 'ollama' in self.prompt_templates:
@@ -424,15 +463,17 @@ class HybridAIProcessor:
             return self.prompt_templates.get('fallback', 
                 "Analyze this meeting transcript and create a detailed summary.")
     
-    def _format_prompt(self, template: str, metadata: MeetingMetadata) -> str:
-        """Format prompt template with meeting metadata."""
+    def _format_prompt(self, template: str, metadata: MeetingMetadata, transcript_content: str = "") -> str:
+        """Format prompt template with meeting metadata and transcript content."""
         try:
             return template.format(
                 meeting_title=metadata.title,
                 meeting_date=metadata.date,
                 duration=metadata.duration,
                 participants=", ".join(metadata.participants),
-                meeting_type=metadata.meeting_type
+                meeting_type=metadata.meeting_type,
+                transcript=transcript_content,
+                transcript_content=transcript_content  # Legacy support
             )
         except KeyError as e:
             self.logger.warning(f"Template formatting failed for key {e}, using basic template")
@@ -492,7 +533,7 @@ class HybridAIProcessor:
             
             # Format prompt for this provider
             template = self.prompt_templates.get(provider_name, self.prompt_templates.get('fallback'))
-            formatted_prompt = self._format_prompt(template, metadata)
+            formatted_prompt = self._format_prompt(template, metadata, transcript_content)
             
             # Process with specific provider
             ai_response = provider.generate_summary(formatted_prompt, transcript_content, context)

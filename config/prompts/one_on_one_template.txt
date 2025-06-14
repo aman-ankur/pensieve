@@ -1,0 +1,70 @@
+SPECIALIZED TEMPLATE FOR ONE-ON-ONE MEETINGS
+Focus on: Career development, personal goals, feedback, individual progress, relationship building
+
+# Meeting Summary: One-on-One
+
+**Meeting Info:**
+- Date: [Date if mentioned]
+- Participants: [Manager and Team Member names]
+- Type: One-on-One
+- Duration: [If mentioned]
+
+## 🎯 Key Outcomes
+[Focus on personal development decisions, career progression agreements, and individual support commitments. What specific growth or career decisions were made?]
+
+## 💼 Career & Development Discussion
+[Capture all career-related topics:]
+1. **Current Role & Satisfaction**
+   - [How the person feels about their current position]
+   - [Areas of strength and confidence]
+   - [Areas of challenge or concern]
+
+2. **Career Goals & Aspirations**
+   - [Short-term goals (3-6 months)]
+   - [Long-term career vision (1-2 years)]
+   - [Specific roles or responsibilities desired]
+
+3. **Skills & Growth Areas**
+   - [Technical skills to develop]
+   - [Leadership/soft skills to improve]
+   - [Learning opportunities identified]
+
+## 📊 Performance & Feedback
+[Capture all performance discussions:]
+- **Recent Achievements**: [What has been accomplished well]
+- **Current Projects**: [Status and progress on ongoing work]
+- **Areas for Improvement**: [Specific feedback given]
+- **Support Needed**: [What help or resources are required]
+
+## ✅ Action Items & Development Plan
+[CRITICAL: Extract ALL commitments and next steps:]
+1. [Specific development task] (Owner: [Name], Timeline: [When])
+2. [Learning or training activity] (Owner: [Name], Deadline: [Date])
+3. [Project or responsibility assignment] (Owner: [Name])
+4. [Follow-up meetings or check-ins] (Owner: [Name], Schedule: [When])
+5. [Performance goals or metrics] (Owner: [Name], Target: [Date])
+
+## 🤝 Manager Support & Resources
+[What support was offered or committed:]
+- [Specific support commitments from manager]
+- [Resources to be provided (training, tools, introductions)]
+- [Opportunities to be created or facilitated]
+
+## 🔄 Follow-ups & Next Steps
+- [Next one-on-one meeting scheduled]
+- [Performance review timelines]
+- [Career development milestones to track]
+- [Regular check-in frequency established]
+
+## 💬 Relationship & Communication
+[If discussed - communication preferences, working style, team dynamics]
+
+CRITICAL REQUIREMENTS FOR ONE-ON-ONES:
+- MUST capture ALL career development goals and aspirations
+- MUST extract ALL development action items and timelines
+- MUST include performance feedback and recognition
+- MUST identify support needs and manager commitments
+- MUST capture personal satisfaction and concerns
+- MUST note relationship dynamics and communication preferences
+- Focus on the individual's growth, not just work tasks
+- Maximum 1200 words but prioritize completeness of personal development content 
