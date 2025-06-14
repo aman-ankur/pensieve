@@ -1,0 +1,99 @@
+# Test Configuration - No Claude API Required
+# This configuration allows full hybrid system testing using only local resources
+
+# AI Provider Configuration
+ai_providers:
+  claude:
+    enabled: false          # Disable Claude for testing
+    priority: 1
+    api_key: "test_mode"    # Mock key for testing
+    model: "claude-3-5-sonnet-20241022"
+    max_context_length: 200000
+    temperature: 0.1
+    
+  ollama:
+    enabled: true           # Enable Ollama for local testing
+    priority: 2
+    base_url: "http://localhost:11434"
+    model: "llama3.1:8b"    # or whatever model you have
+    temperature: 0.3
+    timeout: 300
+
+# Testing Configuration
+testing:
+  mode: "local_only"
+  mock_providers: true
+  simulate_cloud_responses: true
+  
+# Quality Assessment Configuration
+quality_assessment:
+  enabled: true
+  min_technical_terms: 3
+  min_action_items: 1
+  min_summary_length: 200
+  technical_keywords:
+    - "architecture"
+    - "implementation"
+    - "deployment"
+    - "integration"
+    - "performance"
+    - "scalability"
+    - "security"
+    - "database"
+    - "service"
+    - "endpoint"
+    - "migration"
+    - "testing"
+    - "monitoring"
+    - "infrastructure"
+    - "framework"
+
+# Universal Meeting Intelligence Configuration
+universal_meeting_intelligence:
+  enabled: true
+  confidence_threshold: 0.15
+  keyword_weight: 0.5
+  phrase_weight: 1.0
+  
+  # Booking.com Context
+  booking_context:
+    enabled: true
+    teams:
+      - "Flights"
+      - "Accommodations" 
+      - "Platform"
+      - "Mobile"
+      - "Search"
+      - "Payments"
+      - "Customer Service"
+      - "Data"
+    
+    business_terms:
+      - "supplier"
+      - "booking flow"
+      - "conversion"
+      - "inventory"
+      - "pricing"
+      - "availability"
+      - "commission"
+      - "customer experience"
+
+# Processing Configuration
+processing:
+  concurrent_processing: true
+  max_retries: 3
+  timeout_seconds: 300
+  fallback_enabled: true
+  
+# Output Configuration  
+output:
+  format: "markdown"
+  include_metadata: true
+  include_quality_scores: true
+  save_processing_details: true
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  file: "logs/test_hybrid.log"
+  console: true 

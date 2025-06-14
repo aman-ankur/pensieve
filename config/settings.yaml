@@ -15,22 +15,59 @@ monitoring:
 
 # AI Processing Settings
 processing:
+  # Legacy settings for backward compatibility
   ollama_url: "http://localhost:11434"
+  model_name: "llama3.1:8b"       # Fallback/default model
+  max_retries: 3
+  retry_delay: 5       # Seconds between retries
+  request_timeout: 120  # seconds
+  
+  # New Hybrid AI Strategy
+  strategy: "hybrid"   # "cloud_first", "local_only", or "hybrid"
   
   # Model selection for different tasks
   chunk_model: "llama3.1:8b"      # Use better model for chunk processing (was llama3.2:1b)
   synthesis_model: "llama3.1:8b"  # Better model for final synthesis
-  model_name: "llama3.1:8b"       # Fallback/default model
-  
-  max_retries: 3
-  retry_delay: 5       # Seconds between retries
-  request_timeout: 120  # seconds
   
   # Chunking settings for large transcripts
   chunking:
     enabled: true
     max_chunk_size: 2000  # Reduced from 3000 for faster processing
     overlap_size: 100     # Small overlap between chunks
+
+# AI Providers Configuration
+ai_providers:
+  claude:
+    enabled: false  # Set to true when you have API key
+    model_name: "claude-3-5-sonnet-20241022"
+    api_key: null  # Set your Anthropic API key here or use environment variable ANTHROPIC_API_KEY
+    max_tokens: 4000
+    temperature: 0.1
+    timeout: 120
+    priority: 1  # Highest priority (lowest number)
+    
+    # Privacy settings
+    privacy_mode: false  # If true, will not send data to cloud unless explicitly enabled per meeting
+    
+  ollama:
+    enabled: true
+    model_name: "llama3.1:8b"
+    api_url: "http://localhost:11434"
+    temperature: 0.1
+    timeout: 120
+    priority: 2  # Fallback priority
+    
+    # Enhanced processing settings
+    two_pass_enabled: true    # Enable two-pass processing for better quality
+    persona_prompting: true   # Use persona-based prompts
+    entity_extraction: true   # Extract entities first, then summarize
+    
+    # Ollama-specific parameters
+    options:
+      top_k: 40
+      top_p: 0.9
+      repeat_penalty: 1.1
+      num_ctx: 8192  # Context window size
 
 # Output Settings
 output:
@@ -43,6 +80,9 @@ output:
   create_backups: false
   organize_by_date: true
   create_monthly_folders: true
+  
+  # Include provider information in summary metadata
+  include_ai_provider_info: true
 
 # Feature Flags
 features:
@@ -51,6 +91,11 @@ features:
   priority_detection: true     # Detect priority levels
   calendar_integration: false  # Future feature
   slack_notifications: false  # Future feature
+  
+  # New hybrid features
+  cloud_fallback: true         # Allow fallback to cloud when local fails
+  quality_assessment: true     # Assess summary quality and suggest improvements
+  adaptive_chunking: true      # Smart chunking based on content structure
   
 # Logging Settings  
 logging:
@@ -61,6 +106,10 @@ logging:
   max_file_size: "10MB"
   backup_count: 5
   console_output: true
+  
+  # Enhanced logging for hybrid system
+  log_provider_selection: true   # Log which AI provider was used
+  log_processing_metrics: true   # Log detailed performance metrics
 
 # Performance Settings
 performance:
@@ -68,21 +117,45 @@ performance:
   memory_limit: "4GB"         # Maximum memory usage
   cpu_limit: 80              # Maximum CPU usage percentage
   cache_summaries: true      # Cache processed summaries
+  
+  # Provider-specific performance settings
+  claude_rate_limit: 50       # Requests per minute for Claude
+  ollama_concurrent_limit: 2  # Max concurrent Ollama requests
 
 # Meeting Classification
 meeting_types:
   one_on_one:
     keywords: ["1:1", "one-on-one", "weekly sync", "catch up", "check in"]
     priority: "high"
+    # Prefer cloud processing for important 1:1s
+    preferred_provider: "claude"
   team_meeting:
     keywords: ["team", "standup", "scrum", "daily", "retrospective"]
     priority: "medium"
+    preferred_provider: "auto"
   alignment:
     keywords: ["alignment", "sync", "review", "planning", "strategy"]
     priority: "high"
+    preferred_provider: "claude"  # Strategic meetings get best AI
   interview:
     keywords: ["interview", "fit", "coding", "system design"]
     priority: "low"
+    preferred_provider: "ollama"  # Local processing for candidate privacy
   all_hands:
     keywords: ["all hands", "company", "quarterly", "town hall"]
-    priority: "low" 
+    priority: "low"
+    preferred_provider: "ollama"
+
+# Quality Thresholds
+quality:
+  # Minimum requirements for summary acceptance
+  min_action_items: 0      # Minimum number of action items expected
+  min_technical_terms: 3   # Minimum technical terms for engineering meetings
+  min_summary_length: 200  # Minimum characters in summary
+  
+  # Quality scoring weights
+  scoring:
+    technical_content: 0.4    # Weight for technical content detection
+    action_items: 0.3         # Weight for action item extraction
+    business_context: 0.2     # Weight for business context capture
+    clarity: 0.1             # Weight for summary clarity 
