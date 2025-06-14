@@ -65,12 +65,31 @@ class LoggingConfig:
 
 
 @dataclass
+class QualityConfig:
+    """Configuration for quality assessment."""
+    min_action_items: int = 0
+    min_technical_terms: int = 3
+    min_summary_length: int = 200
+    scoring: Dict[str, float] = None
+    
+    def __post_init__(self):
+        if self.scoring is None:
+            self.scoring = {
+                "technical_content": 0.4,
+                "action_items": 0.3,
+                "business_context": 0.2,
+                "clarity": 0.1
+            }
+
+
+@dataclass
 class PensieveConfig:
     """Main configuration class for Pensieve."""
     monitoring: MonitoringConfig
     processing: ProcessingConfig
     output: OutputConfig
     logging: LoggingConfig
+    quality: QualityConfig
     features: Dict[str, bool]
     performance: Dict[str, Any]
     meeting_types: Dict[str, Dict[str, Any]]
@@ -127,6 +146,7 @@ class ConfigManager:
                 processing=processing_config,
                 output=output_config,
                 logging=logging_config,
+                quality=QualityConfig(**raw_config['quality']),
                 features=raw_config.get('features', {}),
                 performance=raw_config.get('performance', {}),
                 meeting_types=raw_config.get('meeting_types', {})

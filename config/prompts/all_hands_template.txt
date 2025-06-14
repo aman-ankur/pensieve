@@ -1,0 +1,99 @@
+SPECIALIZED TEMPLATE FOR ALL-HANDS/COMPANY MEETINGS
+Focus on: Company announcements, organizational updates, leadership communication, company-wide initiatives
+
+# Meeting Summary: All-Hands
+
+**Meeting Info:**
+- Date: [Date if mentioned]
+- Participants: [Leadership team and attendees]
+- Type: All-Hands
+- Duration: [If mentioned]
+- Company/Division: [If mentioned]
+
+## 🎯 Key Announcements
+[Focus on major company announcements and organizational changes. What important news was shared with the entire organization?]
+
+## 🏢 Company Performance & Updates
+[Capture organizational performance and updates:]
+1. **Financial Performance**
+   - **Revenue/Growth**: [Financial highlights or metrics shared]
+   - **Key Performance Indicators**: [Important company metrics]
+   - **Market Position**: [Competitive position or market updates]
+
+2. **Business Updates**
+   - **Product Launches**: [New products or features announced]
+   - **Customer Wins**: [Major customer acquisitions or successes]
+   - **Market Expansion**: [New markets or geographic expansion]
+   - **Partnerships**: [Strategic partnerships announced]
+
+## 👥 Organizational Changes
+[Personnel and organizational updates:]
+- **Leadership Changes**: [New executives, promotions, departures]
+- **Team Restructuring**: [Organizational changes or new teams]
+- **Hiring Plans**: [Headcount growth or new roles]
+- **Office/Location Updates**: [Real estate or location changes]
+
+## 🚀 Strategic Initiatives & Vision
+[Company strategy and future direction:]
+- **Strategic Priorities**: [Key company priorities and focus areas]
+- **Vision Updates**: [Changes to company mission or vision]
+- **Innovation Initiatives**: [New technology or innovation projects]
+- **Transformation Programs**: [Major change initiatives]
+
+## ✅ Company-Wide Action Items
+[CRITICAL: Extract ALL organizational commitments and initiatives:]
+1. [Company-wide initiative or program] (Owner: [Leadership/Team], Timeline: [When])
+2. [Policy or process change] (Owner: [Department], Effective: [Date])
+3. [Communication or training rollout] (Owner: [Team], By: [When])
+4. [Performance or goal tracking] (Owner: [Leadership], Review: [When])
+5. [Employee engagement initiative] (Owner: [HR/Leadership], Launch: [Date])
+
+## 📊 Goals & Metrics
+[Company objectives and success metrics:]
+- **Annual Goals**: [Key company objectives for the year]
+- **Quarterly Targets**: [Immediate term goals and targets]
+- **Success Metrics**: [How success will be measured]
+- **Progress Updates**: [Status on existing goals]
+
+## 💼 Employee Experience
+[Employee-focused updates:]
+- **Benefits Changes**: [Updates to compensation, benefits, perks]
+- **Professional Development**: [Training programs, career development]
+- **Work Environment**: [Office policies, remote work, culture initiatives]
+- **Recognition Programs**: [Employee recognition or awards]
+
+## 🔄 Follow-ups & Communication
+- [Next all-hands meeting scheduled]
+- [Department-level follow-up meetings]
+- [Communication channels for questions]
+- [Feedback collection processes]
+
+## 🎉 Celebrations & Recognition
+[Company achievements and employee recognition:]
+- [Company milestones achieved]
+- [Team or individual recognition]
+- [Awards or external recognition received]
+- [Company culture highlights]
+
+## 💬 Q&A Highlights
+[Key questions and answers from Q&A session:]
+- **[Question Topic]**: [Leadership response summary]
+- **[Employee Concern]**: [How leadership addressed it]
+- **[Future Direction Question]**: [Strategic response provided]
+
+## 📢 Communication & Resources
+[Additional resources and communications:]
+- [Where to find more information]
+- [Follow-up resources or documents]
+- [Contact information for questions]
+
+CRITICAL REQUIREMENTS FOR ALL-HANDS MEETINGS:
+- MUST capture ALL major company announcements and organizational changes
+- MUST extract ALL company-wide initiatives with clear ownership and timelines
+- MUST document strategic direction and vision updates
+- MUST include performance metrics and company goals
+- MUST capture employee-focused updates and benefits changes
+- MUST summarize key Q&A topics and leadership responses
+- Focus on information that affects the entire organization
+- Be comprehensive but accessible - all-hands content should be clear to all employees
+- Maximum 1200 words but prioritize all major announcements and initiatives 

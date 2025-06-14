@@ -1,0 +1,86 @@
+SPECIALIZED TEMPLATE FOR TEAM MEETINGS
+Focus on: Sprint progress, blockers, team coordination, task updates, retrospectives
+
+# Meeting Summary: Team Meeting
+
+**Meeting Info:**
+- Date: [Date if mentioned]
+- Participants: [Team member names and roles]
+- Type: Team Meeting
+- Duration: [If mentioned]
+- Sprint/Iteration: [If mentioned]
+
+## 🎯 Key Outcomes
+[Focus on team decisions, sprint progress, and coordination agreements. What was decided for the team's immediate work?]
+
+## 📋 Team Progress Updates
+[Capture individual/workstream updates:]
+1. **[Team Member/Workstream Name]**
+   - **Completed**: [What was finished since last meeting]
+   - **In Progress**: [Current work and status]
+   - **Next**: [Planned work for upcoming period]
+   - **Blockers**: [Any impediments or dependencies]
+
+2. **[Team Member/Workstream Name]**
+   - **Completed**: [Tasks/features completed]
+   - **In Progress**: [Current work items]
+   - **Next**: [Upcoming tasks]
+   - **Blockers**: [Issues preventing progress]
+
+## 🚧 Blockers & Dependencies
+[ALL blockers and impediments mentioned:]
+1. **[Blocker Description]**
+   - **Impact**: [Who/what is affected]
+   - **Owner**: [Who will resolve]
+   - **Timeline**: [Expected resolution]
+
+2. **[Dependency Description]**
+   - **Waiting On**: [External team/person/system]
+   - **Impact**: [Effect on sprint/project]
+   - **Follow-up**: [How to resolve]
+
+## ✅ Action Items & Task Assignments
+[CRITICAL: Extract ALL tasks and assignments:]
+1. [Specific task or fix] (Owner: [Name], Deadline: [Date])
+2. [Follow-up or investigation] (Owner: [Name], By: [When])
+3. [Meeting or discussion to schedule] (Owner: [Name])
+4. [Code review or testing task] (Owner: [Name], Sprint: [Which])
+5. [Documentation or communication task] (Owner: [Name])
+
+## 📊 Sprint/Project Status
+[If applicable - Agile/project metrics:]
+- **Sprint Goal**: [Current sprint objective]
+- **Velocity**: [Story points or tasks completed]
+- **Burndown**: [On track/behind/ahead]
+- **Risks**: [Project risks identified]
+- **Upcoming Milestones**: [Important dates]
+
+## 🔄 Process & Team Coordination
+[Team process discussions:]
+- **Process Changes**: [Workflow or tool modifications]
+- **Team Ceremonies**: [Meeting schedule changes]
+- **Communication Improvements**: [How to collaborate better]
+- **Tool/Infrastructure Updates**: [Development environment changes]
+
+## 🎉 Wins & Recognition
+[Celebrate team achievements:]
+- [Successful deployments or launches]
+- [Problem-solving wins]
+- [Team member recognition]
+- [Process improvements achieved]
+
+## 🔄 Follow-ups & Next Steps
+- [Next team meeting scheduled]
+- [Sprint planning or review dates]
+- [Demo or presentation schedules]
+- [Decision deadlines]
+
+CRITICAL REQUIREMENTS FOR TEAM MEETINGS:
+- MUST capture ALL individual progress updates and blockers
+- MUST extract ALL task assignments with clear ownership
+- MUST identify dependencies and external blockers
+- MUST track sprint/project status and velocity
+- MUST note process improvements and team coordination
+- Focus on actionable work items and team productivity
+- Be concise but comprehensive - team meetings have many small items
+- Maximum 1000 words but prioritize all action items and blockers 

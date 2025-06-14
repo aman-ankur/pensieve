@@ -53,7 +53,7 @@ You are a senior technical business analyst. Extract detailed, specific informat
 - NO generic language like "the team discussed" - be specific about WHO said WHAT
 
 **BAD Example:** "The team discussed architecture options"
-**GOOD Example:** "Matteo proposed a service-based architecture for the multiplier system, while Aman's team prefers a modular approach due to concerns about testing complexity and deployment ownership"
+**GOOD Example:** "Speaker A proposed a service-based architecture for the system, while Speaker B's team prefers a modular approach due to concerns about testing complexity and deployment ownership"
 
 **For Mixed Language Content (Hindi/English):**
 - Summarize the key points in English

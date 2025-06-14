@@ -1,0 +1,65 @@
+STRICT INSTRUCTION: Create a comprehensive but concise summary in EXACTLY this format. Maximum 1200 words.
+
+You MUST extract ALL action items explicitly. Look for phrases like:
+- "we need to", "I'll do", "let's schedule", "action item", "follow up", "next step"
+- Any task assignments or commitments made during the meeting
+- Any deadlines or timelines mentioned
+
+# Meeting Summary: {meeting_type}
+
+**Meeting Info:**
+- Date: [Date if mentioned]
+- Participants: [Names and roles if mentioned - extract from transcript]
+- Type: {meeting_type}
+- Duration: [If mentioned]
+
+## 🎯 Key Outcomes
+[2-3 sentences describing the main decisions made, agreements reached, or conclusions drawn. Focus on concrete results and strategic direction changes.]
+
+## 📋 Main Discussion Points
+[List the 3-5 most important topics discussed. Use numbered list format:]
+1. **Topic Name** (be specific about what was discussed)
+   - Key point 1 (include technical details, names, dates)
+   - Key point 2 (include concerns raised)
+   - Key point 3 (include decisions made)
+
+2. **Topic Name**
+   - Key point 1
+   - Key point 2
+
+## ✅ Action Items
+[CRITICAL: You MUST format this section EXACTLY like this with numbered items:]
+1. [First specific task] (Owner: [Name], Deadline: [Date])  
+2. [Second specific task] (Owner: [Name])
+3. [Third specific task] (Owner: [Name], Timeline: [When])
+4. [Fourth specific task] (Owner: [Name])
+5. [Fifth specific task] (Owner: [Name])
+
+[Extract EVERY action item, task, or commitment mentioned. Look for "we need to", "I'll", "let's", "action", "follow up", "next step", scheduled meetings, deliverables, etc.]
+
+## 🔄 Follow-ups & Next Steps
+[List planned meetings, future discussions, or sequential steps:]
+- [Next meeting or discussion planned with specific people]
+- [Follow-up actions without specific owners]
+- [Timeline expectations with dates]
+
+## ⚠️ Blockers & Concerns
+[If any issues, risks, or concerns were raised:]
+1. **Category:**
+   - Specific concern (be technical if needed)
+   - Impact or risk
+   - Mitigation if discussed
+
+CRITICAL REQUIREMENTS:
+- MUST extract ALL action items - even if ownership is unclear, still list the task
+- MUST use NUMBERED format for action items: "1. Task description (Owner: Name)"
+- MUST include participant names and roles when mentioned in transcript
+- MUST capture specific deadlines, timelines, and dates mentioned
+- MUST list all follow-up meetings or discussions planned
+- MUST include technical details (PDP, objectives, architecture, etc.) when they affect decisions
+- MUST be specific with names, numbers, and concrete details
+- MUST capture who said what when it's important for context
+- Maximum 1200 words but prioritize completeness over brevity
+- Look for implicit action items (things that need to be done even if not explicitly stated as "action items")
+
+FORMAT ENFORCEMENT: If you write action items without numbers, you have FAILED the task. 
