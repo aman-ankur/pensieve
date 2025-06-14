@@ -1,0 +1,175 @@
+Im trying to work on this prokect to extract summary from zoom transcript for my work cases. this is the current process. details
+
+Core Components:
+
+File Monitoring: Watchdog-based system monitoring ~/Documents/Zoom
+
+AI Processing: Ollama integration with local models (llama3.1:8b, llama3.2:1b)
+
+Storage: Organized summaries by year/month in markdown format
+
+Configuration: YAML-based settings with prompt templates
+
+Transcript → Parse Metadata → Check Size → Chunk (if large) → AI Process → Synthesize → Save
+
+Major Problems Encountered
+
+1. Performance Issues (SOLVED ✅)
+
+Problem: Initial processing took 117.6s for 31KB transcript
+
+Cause: Large transcripts exceeded model context window (8192 tokens)
+
+Solution: Implemented chunking system
+
+Result: Reduced to 69.3s (41% improvement)
+
+2. Quality Issues (ONGOING ❌)
+
+The Core Problem: AI models consistently produce generic, meaningless summaries that miss the actual technical content.
+
+Example of Quality Failure:
+
+Real Meeting Content:
+
+Technical discussion about "multiplier" system for flights ancillary services
+
+Architecture debate: service-based vs modular approach
+
+Implementation concerns: testing, deployment, ownership
+
+Key people: Matteo (proposing), Aman (concerned), Vito (architect)
+
+Business context: Booking.com flights revenue expansion
+
+AI Generated Summary:
+
+"Team discussed collaboration and communication"
+
+"Making decisions quickly while handling suppliers"
+
+"Improving customer satisfaction and revenue growth"
+
+Generic HR topics instead of technical architecture
+
+🔧 Solutions Attempted
+
+1. Prompt Engineering Evolution
+
+Attempt 1: Basic Template
+
+Please analyze this meeting transcript and create a structured summary.
+
+Result: ❌ Too generic, missed technical content
+
+Attempt 2: Specific Instructions
+
+Focus on technical/business content. Skip personal chat.
+
+Extract: Technical systems, business problems, action items
+
+Result: ❌ Still generic, fabricated content
+
+Attempt 3: Detailed Examples & Structure
+
+CRITICAL INSTRUCTIONS:
+
+1. IDENTIFY THE CORE BUSINESS/TECHNICAL PROBLEM
+
+2. EXTRACT specific technical terms, system names
+
+3. CAPTURE business context (industry, product, impact)
+
+BAD Example: "The team discussed architecture options"
+
+GOOD Example: "Matteo proposed service-based architecture for multiplier system"
+
+Result: ❌ Better structure, but still missing core content
+
+2. Chunking Strategy Evolution
+
+Attempt 1: Simple Size-Based Chunking
+
+Split by 2000-character chunks
+
+No context preservation
+
+Result: ❌ Lost relationships between chunks
+
+Attempt 2: Speaker-Based Chunking
+
+Split by speaker segments
+
+Basic overlap between chunks
+
+Result: ❌ Better boundaries, still context loss
+
+Attempt 3: Context-Aware Chunking (Cursor-Style)
+
+Semantic segmentation by topics/speakers
+
+Context preservation with previous chunk summaries
+
+300-character overlap between chunks
+
+Entity tracking (people, systems, decisions)
+
+Result: ❌ Better architecture, but AI model still fails
+
+3. Model Selection Experiments
+
+Multi-Model Strategy:
+
+llama3.2:1b: Fast chunk processing (1.5s/chunk)
+
+llama3.1:8b: Final synthesis (42.4s)
+
+Result: ❌ Speed improved, quality still poor
+
+Single Better Model:
+
+llama3.1:8b: For all processing
+
+Result: ❌ Slower but quality not significantly better
+
+🔍 Root Cause Analysis
+
+The Real Problem: AI Model Limitations
+
+Evidence from transcript analysis:
+
+✅ Technical content IS present: "multiplier approach", "service versus module", "architectural point of view"
+
+✅ Prompts ARE specific: Clear instructions with examples
+
+✅ Context IS preserved: Chunking maintains relationships
+
+❌ AI models FAIL to extract: Even with perfect prompts, models miss obvious technical terms
+
+Model Behavior Patterns:
+
+Keyword Blindness: Ignores technical terms like "multiplier", "service", "architecture"
+
+Generic Fallback: Defaults to business buzzwords when uncertain
+
+Content Fabrication: Invents details not present in transcript
+
+Context Confusion: Cannot connect related concepts across text
+
+What Works:
+
+✅ File monitoring and processing pipeline
+
+✅ Performance optimization through chunking
+
+✅ Context-aware chunking architecture
+
+✅ Comprehensive prompt engineering
+
+What Doesn't Work:
+
+❌ AI model quality for technical content extraction
+
+❌ Consistent capture of business context
+
+❌ Reliable action item identification

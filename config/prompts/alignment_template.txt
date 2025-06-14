@@ -1,0 +1,91 @@
+SPECIALIZED TEMPLATE FOR ALIGNMENT/STRATEGY MEETINGS
+Focus on: Strategic decisions, architectural choices, planning, stakeholder alignment, high-level direction
+
+# Meeting Summary: Strategy & Alignment
+
+**Meeting Info:**
+- Date: [Date if mentioned]
+- Participants: [Names and roles - emphasize decision makers and stakeholders]
+- Type: Strategy & Alignment
+- Duration: [If mentioned]
+- Project/Initiative: [If mentioned]
+
+## 🎯 Key Strategic Outcomes
+[Focus on high-level decisions and strategic direction changes. What major decisions were made that will impact the organization/team/project?]
+
+## 🏗️ Strategic Discussion Points
+[Capture major strategic topics:]
+1. **[Strategic Topic/Decision Area]**
+   - **Current State**: [Where things stand now]
+   - **Proposed Direction**: [What direction was discussed/decided]
+   - **Rationale**: [Why this direction makes sense]
+   - **Impact**: [Who/what will be affected]
+   - **Trade-offs**: [What alternatives were considered]
+
+2. **[Architecture/Technical Strategy]**
+   - **Architectural Approach**: [Technical direction decided]
+   - **Technology Choices**: [Tools, platforms, frameworks]
+   - **Implementation Strategy**: [How to execute]
+   - **Migration Path**: [If changing from current state]
+
+## 📊 Business Context & Constraints
+[Capture business drivers and constraints:]
+- **Business Objectives**: [What business goals are being served]
+- **Timeline Constraints**: [Critical deadlines and milestones]
+- **Resource Constraints**: [Budget, people, technical limitations]
+- **Market/Competitive Factors**: [External pressures or opportunities]
+- **Risk Factors**: [Major risks identified and mitigation strategies]
+
+## 🤝 Stakeholder Alignment
+[Capture alignment and disagreement:]
+- **Areas of Agreement**: [What everyone agreed on]
+- **Areas of Disagreement**: [What still needs resolution]
+- **Concerns Raised**: [Stakeholder concerns that need addressing]
+- **Buy-in Status**: [Who supports the direction, who has reservations]
+
+## ✅ Strategic Action Items & Decisions
+[CRITICAL: Extract ALL strategic commitments and next steps:]
+1. [Strategic initiative or decision] (Owner: [Name/Team], Timeline: [When])
+2. [Architecture or technical decision] (Owner: [Name], Deadline: [Date])
+3. [Stakeholder communication task] (Owner: [Name], By: [When])
+4. [Research or analysis needed] (Owner: [Name], Complete by: [Date])
+5. [Resource allocation or approval] (Owner: [Name], Timeline: [When])
+
+## 🗓️ Roadmap & Timeline
+[Strategic timeline and milestones:]
+- **Phase 1**: [Initial phase goals and timeline]
+- **Phase 2**: [Subsequent phase plans]
+- **Key Milestones**: [Critical dates and deliverables]
+- **Dependencies**: [What needs to happen first]
+- **Success Metrics**: [How success will be measured]
+
+## 🔄 Follow-ups & Governance
+- [Next strategic review meeting]
+- [Decision checkpoints and gates]
+- [Stakeholder communication plan]
+- [Progress review cadence]
+
+## ⚠️ Risks & Concerns
+[Strategic risks and mitigation:]
+1. **[Risk Category]**
+   - **Risk**: [Specific risk or concern]
+   - **Impact**: [Potential consequences]
+   - **Mitigation**: [How to address or monitor]
+   - **Owner**: [Who manages this risk]
+
+## 🎯 Success Criteria & Metrics
+[How success will be measured:]
+- [Specific metrics or KPIs]
+- [Success criteria defined]
+- [Review schedule for metrics]
+
+CRITICAL REQUIREMENTS FOR STRATEGY/ALIGNMENT MEETINGS:
+- MUST capture ALL strategic decisions and their rationale
+- MUST identify ALL stakeholder concerns and alignment status
+- MUST extract ALL high-level action items with ownership
+- MUST document architectural and technical direction decisions
+- MUST capture business context and constraints driving decisions
+- MUST identify risks and mitigation strategies
+- Focus on long-term impact and strategic direction
+- Include trade-offs and alternatives considered
+- Maximum 1400 words - strategic context requires more detail 
