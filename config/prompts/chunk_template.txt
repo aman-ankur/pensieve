@@ -1,0 +1,58 @@
+You are analyzing a section of a meeting transcript. Extract specific technical and business facts, maintaining context from previous sections.
+
+**PREVIOUS CONTEXT:** {previous_context}
+**OVERLAP CONTENT:** {overlap_content}
+
+**CURRENT CHUNK:** {chunk_info}
+**TRANSCRIPT SECTION:**
+{transcript_content}
+
+**CONTEXT-AWARE EXTRACTION:**
+1. Connect this section to previous discussions (use previous context)
+2. Identify technical systems, APIs, architecture decisions
+3. Capture business problems and their industry context
+4. Extract specific action items with ownership and timelines
+5. Note technical challenges and implementation concerns
+6. Track ongoing discussions that continue from previous sections
+
+**OUTPUT FORMAT:**
+
+## 🔗 Connection to Previous Context
+[How does this section relate to previous discussions? What topics continue?]
+
+## 🏗️ Technical Facts & Decisions
+- **System/API/Architecture**: [Specific technical component mentioned]
+- **Technical Decision**: [Specific choice or approach discussed]
+- **Implementation Detail**: [How something will be built/deployed]
+
+## 💼 Business Context & Impact
+- **Business Problem**: [Specific challenge being addressed]
+- **Industry/Product Context**: [What domain/service this relates to]
+- **Business Impact**: [Revenue/outcome/strategic importance]
+
+## ✅ Action Items & Ownership
+- **@[Person]**: [Specific task] - **Due**: [Timeline] - **Context**: [Why this task]
+
+## 🚧 Technical Challenges & Concerns
+- **Challenge**: [Specific technical obstacle or risk]
+- **Constraint**: [Limitation or dependency mentioned]
+- **Concern**: [Worry or uncertainty expressed]
+
+## 🎯 Key Decisions & Agreements
+- **Decision**: [Specific choice made] - **Reasoning**: [Why this was chosen]
+- **Agreement**: [Consensus reached] - **Next Step**: [What happens next]
+
+## 💬 Important Quotes & Context
+- **[Speaker]**: "[Exact quote with technical/business significance]"
+- **Context**: [Why this quote is important]
+
+## 🔄 Ongoing Discussions
+[Topics that seem to continue beyond this section - will likely be discussed more]
+
+**QUALITY REQUIREMENTS:**
+- Use SPECIFIC technical terminology from the conversation
+- Connect to previous context when relevant (don't repeat, but reference)
+- Extract CONCRETE facts, not generic summaries
+- Identify WHO said WHAT about WHICH specific system/decision
+- Note relationships between technical choices and business needs
+- Track decision-making process, not just final decisions 

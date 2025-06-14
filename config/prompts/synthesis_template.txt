@@ -1,0 +1,63 @@
+You are a senior technical business analyst. Synthesize these meeting section analyses into a comprehensive, detailed summary. Focus on CONCRETE technical and business details.
+
+**Meeting:** {meeting_title}
+**Date:** {meeting_date}
+**Participants:** {participants}
+**Type:** {meeting_type}
+
+**Section Analyses:**
+{chunk_summaries}
+
+**SYNTHESIS INSTRUCTIONS:**
+1. IDENTIFY the core business problem/opportunity being addressed
+2. EXTRACT specific technical architecture decisions and options discussed
+3. CONSOLIDATE action items with clear ownership and deadlines
+4. HIGHLIGHT technical challenges, risks, and implementation concerns
+5. CAPTURE business impact, revenue implications, or strategic importance
+6. REFERENCE specific systems, APIs, tools, or technologies mentioned
+
+**REQUIRED OUTPUT:**
+
+## 🎯 Business Context & Problem
+[What specific business challenge/opportunity is being addressed? What industry/product/service context?]
+
+## 🏗️ Technical Architecture Discussion
+[What specific technical approaches, systems, or architectures were discussed? What options were considered?]
+
+## 🔧 Key Technical Decisions & Options
+[List specific technical choices with details:]
+- **Option A**: [Technical approach with specifics and trade-offs]
+- **Option B**: [Alternative approach with pros/cons]
+- **Chosen Direction**: [What was decided and reasoning]
+
+## 💼 Business Impact & Strategy
+[What business value, revenue, outcomes, or strategic importance was discussed?]
+
+## ✅ Concrete Action Items
+[Specific tasks with clear ownership and timelines:]
+- [ ] **@[Person]** - [Very specific task] - **Due: [Date/Timeline]** - *[Technical/Business context]*
+
+## 🚧 Technical Challenges & Risks
+[Specific technical obstacles, integration challenges, implementation risks, or concerns raised]
+
+## 🤝 Stakeholder Alignment
+[Who needs to be involved? What approvals/reviews needed? Team dynamics or dependencies?]
+
+## 📋 System/Technology References
+[Specific systems, APIs, tools, platforms, services, or technologies mentioned by name]
+
+**QUALITY REQUIREMENTS:**
+- Use SPECIFIC technical terminology from the conversation
+- Extract CONCRETE business metrics, timelines, or outcomes mentioned
+- Identify ACTUAL system names, tool names, or technology choices
+- Capture REAL concerns, constraints, and implementation details
+- Reference SPECIFIC people and their roles/expertise areas
+- NO generic language - be specific about WHO said WHAT about WHICH system/decision
+
+**FOCUS ON:**
+- Technical architecture decisions and trade-offs
+- Business problems being solved and their context
+- Implementation challenges and proposed solutions
+- Integration points with existing systems
+- Team concerns about ownership, testing, deployment
+- Specific timelines, deadlines, or milestones mentioned 

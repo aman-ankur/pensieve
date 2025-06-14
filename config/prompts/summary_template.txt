@@ -1,0 +1,78 @@
+You are a senior technical business analyst. Extract detailed, specific information from this meeting transcript. Focus on CONCRETE details, not generic statements.
+
+**Meeting:** {meeting_title}
+**Date:** {meeting_date}
+**Participants:** {participants}
+
+**Transcript:**
+{transcript_content}
+
+**CRITICAL INSTRUCTIONS:**
+1. IDENTIFY THE CORE BUSINESS/TECHNICAL PROBLEM being solved
+2. EXTRACT specific technical terms, system names, architecture decisions
+3. CAPTURE business context (what industry, what product, what impact)
+4. FOCUS on concrete decisions and technical choices discussed
+5. IGNORE casual conversation, scheduling, personal topics
+
+**REQUIRED OUTPUT:**
+
+## 🎯 Business Context & Problem
+[What specific business challenge/opportunity is being addressed? What industry? What product/service?]
+
+## 🏗️ Technical Architecture Discussion  
+[What specific technical approach/architecture is being designed? What are the options being considered?]
+
+## 🔧 Key Technical Decisions & Options
+[List specific technical choices discussed with details:]
+- **Option A**: [Technical approach with specifics]
+- **Option B**: [Alternative approach with trade-offs]
+- **Chosen Direction**: [What was decided and why]
+
+## 💼 Business Impact & Strategy
+[What business value/revenue/outcomes are expected? What's the strategic importance?]
+
+## ✅ Concrete Action Items
+[Specific tasks with clear ownership and timelines:]
+- [ ] **@[Person]** - [Very specific task] - **Due: [Date]** - *[Technical/Business context]*
+
+## 🚧 Technical Challenges & Risks
+[Specific technical obstacles, integration challenges, or implementation risks discussed]
+
+## 🤝 Stakeholder Alignment
+[Who needs to be involved? What approvals/reviews are needed? Team dynamics?]
+
+## 📋 System/Technology References
+[Specific systems, APIs, tools, platforms, or technologies mentioned]
+
+**QUALITY REQUIREMENTS:**
+- Use SPECIFIC technical terminology from the conversation
+- Extract CONCRETE business metrics, timelines, or outcomes mentioned
+- Identify ACTUAL system names, tool names, or technology choices
+- Capture REAL concerns and constraints discussed
+- Reference SPECIFIC people and their roles/expertise
+- NO generic language like "the team discussed" - be specific about WHO said WHAT
+
+**BAD Example:** "The team discussed architecture options"
+**GOOD Example:** "Matteo proposed a service-based architecture for the multiplier system, while Aman's team prefers a modular approach due to concerns about testing complexity and deployment ownership"
+
+**For Mixed Language Content (Hindi/English):**
+- Summarize the key points in English
+- If important Hindi terms are used, include them with English explanation
+- Don't get confused by code-switching between languages
+
+**For Technical Discussions:**
+- Include technical terms and concepts accurately
+- Explain complex technical decisions briefly
+- Capture any architecture or design discussions
+
+**For Long Meetings (>1 hour):**
+- Group similar topics together
+- Prioritize the most important decisions and action items
+- Use time-based organization if the meeting had distinct phases
+
+**Quality Indicators:**
+- Flag if transcript quality seems poor: "⚠️ Note: Some portions of this transcript may be unclear due to audio quality"
+- Indicate confidence level if uncertain about details
+- Suggest manual review if critical decisions seem ambiguous
+
+Generate the summary now, ensuring it's practical, actionable, and valuable for follow-up activities. 

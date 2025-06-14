@@ -1,0 +1,88 @@
+# Pensieve Configuration File
+# AI-powered meeting transcript summarization tool
+
+# Monitoring Settings
+monitoring:
+  zoom_folder: "~/Documents/Zoom"
+  file_extensions: [".txt"]
+  ignored_folders: ["archive", "temp", ".git"]
+  poll_interval: 2.0  # seconds
+  watch_patterns: 
+    - "*/meeting_saved_closed_caption.txt"
+  min_file_size: 1024  # Skip files smaller than 1KB
+  check_interval: 2    # Seconds between checks
+  file_stable_time: 3  # Wait time to ensure file is complete
+
+# AI Processing Settings
+processing:
+  ollama_url: "http://localhost:11434"
+  
+  # Model selection for different tasks
+  chunk_model: "llama3.1:8b"      # Use better model for chunk processing (was llama3.2:1b)
+  synthesis_model: "llama3.1:8b"  # Better model for final synthesis
+  model_name: "llama3.1:8b"       # Fallback/default model
+  
+  max_retries: 3
+  retry_delay: 5       # Seconds between retries
+  request_timeout: 120  # seconds
+  
+  # Chunking settings for large transcripts
+  chunking:
+    enabled: true
+    max_chunk_size: 2000  # Reduced from 3000 for faster processing
+    overlap_size: 100     # Small overlap between chunks
+
+# Output Settings
+output:
+  summaries_folder: "./summaries"
+  template_file: "config/prompts/summary_template.txt"
+  date_format: "%Y-%m-%d"
+  time_format: "%H-%M"
+  filename_format: "{date}_{time}_{title}_summary.md"
+  include_metadata: true
+  create_backups: false
+  organize_by_date: true
+  create_monthly_folders: true
+
+# Feature Flags
+features:
+  multilingual: true           # Handle Hindi/English mixed content
+  action_extraction: true      # Extract action items
+  priority_detection: true     # Detect priority levels
+  calendar_integration: false  # Future feature
+  slack_notifications: false  # Future feature
+  
+# Logging Settings  
+logging:
+  level: "INFO"               # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file_rotation: true
+  log_file: "./logs/pensieve.log"
+  max_file_size: "10MB"
+  backup_count: 5
+  console_output: true
+
+# Performance Settings
+performance:
+  max_concurrent_files: 3     # Process multiple files simultaneously
+  memory_limit: "4GB"         # Maximum memory usage
+  cpu_limit: 80              # Maximum CPU usage percentage
+  cache_summaries: true      # Cache processed summaries
+
+# Meeting Classification
+meeting_types:
+  one_on_one:
+    keywords: ["1:1", "one-on-one", "weekly sync", "catch up", "check in"]
+    priority: "high"
+  team_meeting:
+    keywords: ["team", "standup", "scrum", "daily", "retrospective"]
+    priority: "medium"
+  alignment:
+    keywords: ["alignment", "sync", "review", "planning", "strategy"]
+    priority: "high"
+  interview:
+    keywords: ["interview", "fit", "coding", "system design"]
+    priority: "low"
+  all_hands:
+    keywords: ["all hands", "company", "quarterly", "town hall"]
+    priority: "low" 
