@@ -56,7 +56,46 @@ config/local_settings.yaml
 temp/
 .cache/
 
-# Sensitive data
+# Sensitive data - API Keys and Environment Variables
 *.key
 *.pem
-secrets.yaml 
+secrets.yaml
+.env.*
+config/production.yaml
+config/secrets.yaml
+config/api_keys.yaml
+**/api_key*
+**/*secret*
+**/credentials*
+anthropic_api_key.txt
+
+# Sensitive Meeting Data - Real transcripts and personal information
+tests/test_transcripts/**/meeting_saved_closed_caption.txt
+**/meeting_saved_closed_caption.txt
+*real_meeting*
+*personal*
+*company_specific*
+
+# Test outputs and summaries containing sensitive data
+tests/*summary*.md
+tests/*summary*.json
+tests/*output*.txt
+tests/*result*.txt
+**/context_aware_summary.*
+summaries/**/2025-02-14_16-59_Matteo_Aman_*
+summaries/**/*Matteo*
+summaries/**/*Aman*
+**/test_summaries/
+**/test_outputs/
+
+# Test files referencing real meeting data
+test_improved_processing.py
+test_universal_analyzer.py
+**/test_*_real_*
+**/test_*meeting*
+
+# Allow only generic test files
+!tests/test_transcripts/generic_*
+!tests/test_transcripts/sample_*
+!tests/generic_*
+!tests/sample_*

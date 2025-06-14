@@ -4,6 +4,7 @@ Supports multiple AI services with consistent interface and fallback mechanisms.
 """
 
 import json
+import os
 import time
 import requests
 from abc import ABC, abstractmethod
@@ -489,7 +490,7 @@ EXTRACT KEY TERMS NOW:"""
     
     def _create_persona_prompt(self, base_prompt: str, context: ProcessingContext) -> str:
         """Create a persona-based prompt for better Ollama performance."""
-        persona = f"""You are a Senior Engineering Manager with 15+ years of experience at tech companies like Google, Meta, and Booking.com. 
+        persona = f"""You are a Senior Engineering Manager with 15+ years of experience at top tech companies. 
 
 You excel at:
 - Understanding technical architecture discussions
@@ -519,20 +520,38 @@ class AIProviderManager:
         # Load provider configurations
         provider_configs = []
         
-        # Check for Claude configuration
-        if hasattr(config, 'ai_providers') and hasattr(config.ai_providers, 'claude'):
-            claude_config = config.ai_providers.claude
+        # Try to load ai_providers configuration from YAML
+        try:
+            # Get raw config for ai_providers section
+            from pathlib import Path
+            import yaml
+            
+            project_root = Path(__file__).parent.parent.parent
+            config_path = project_root / "config" / "settings.yaml"
+            
+            with open(config_path, 'r') as f:
+                raw_config = yaml.safe_load(f)
+            
+            ai_providers = raw_config.get('ai_providers', {})
+            
+            # Check for Claude configuration
+            claude_config = ai_providers.get('claude', {})
             if claude_config.get('enabled', False):
-                provider_configs.append(AIProviderConfig(
-                    name="claude",
-                    provider_type=AIProviderType.CLAUDE,
-                    model_name=claude_config.get('model_name', 'claude-3-5-sonnet-20241022'),
-                    api_key=claude_config.get('api_key'),
-                    max_tokens=claude_config.get('max_tokens', 4000),
-                    temperature=claude_config.get('temperature', 0.1),
-                    timeout=claude_config.get('timeout', 120),
-                    priority=claude_config.get('priority', 1)
-                ))
+                api_key = claude_config.get('api_key') or os.getenv('ANTHROPIC_API_KEY')
+                if api_key:
+                    provider_configs.append(AIProviderConfig(
+                        name="claude",
+                        provider_type=AIProviderType.CLAUDE,
+                        model_name=claude_config.get('model_name', 'claude-3-5-sonnet-20241022'),
+                        api_key=api_key,
+                        max_tokens=claude_config.get('max_tokens', 4000),
+                        temperature=claude_config.get('temperature', 0.1),
+                        timeout=claude_config.get('timeout', 120),
+                        priority=claude_config.get('priority', 1)
+                    ))
+        
+        except Exception as e:
+            self.logger.warning(f"Could not load ai_providers config: {e}")
         
         # Always add Ollama as fallback
         provider_configs.append(AIProviderConfig(
@@ -570,7 +589,27 @@ class AIProviderManager:
         self.logger.info(f"Loaded {len(self.providers)} AI providers")
     
     def get_best_provider(self, context: ProcessingContext) -> Optional[AIProvider]:
-        """Get the best available provider for the given context."""
+        """Get the best available provider for the given context with cost optimization."""
+        
+        # Cost-optimized routing based on meeting type and complexity
+        meeting_type = context.meeting_type.lower()
+        
+        # Use local Ollama for simple/routine meetings to save costs
+        local_suitable_meetings = ['standup', 'daily', 'scrum', 'all_hands', 'general']
+        
+        # Use Claude only for complex/strategic meetings
+        cloud_priority_meetings = ['strategy', 'technical', 'architecture', 'one_on_one', 'alignment']
+        
+        # If it's a simple meeting type, prefer local processing
+        if any(simple_type in meeting_type for simple_type in local_suitable_meetings):
+            self.logger.info("🏠 Using local processing for routine meeting (cost optimization)")
+            for provider in reversed(self.providers):  # Start with lowest priority (Ollama)
+                if (provider.config.provider_type == AIProviderType.OLLAMA and 
+                    provider.config.enabled and provider.is_available()):
+                    self.logger.info(f"Selected provider: {provider.config.name} (cost-optimized)")
+                    return provider
+        
+        # For complex meetings or if local isn't available, use standard priority order
         for provider in self.providers:
             if not provider.config.enabled:
                 continue

@@ -1,0 +1,84 @@
+SPECIALIZED TEMPLATE FOR INTERVIEW MEETINGS
+Focus on: Candidate evaluation, technical assessment, hiring decisions, interview feedback
+NOTE: Prioritize privacy - avoid detailed personal information
+
+# Meeting Summary: Interview
+
+**Meeting Info:**
+- Date: [Date if mentioned]
+- Participants: [Interviewers - avoid candidate personal details]
+- Type: Interview
+- Duration: [If mentioned]
+- Position: [Role being interviewed for]
+- Interview Type: [Technical, behavioral, system design, etc.]
+
+## 🎯 Key Outcomes
+[Focus on evaluation conclusions and hiring decisions. Overall assessment and next steps in hiring process.]
+
+## 👤 Candidate Assessment
+[High-level evaluation without personal details:]
+- **Overall Impression**: [Strong, average, weak fit]
+- **Technical Competency**: [Technical skills demonstrated]
+- **Cultural Fit**: [Alignment with team/company values]
+- **Experience Level**: [Junior, mid, senior assessment]
+- **Communication Skills**: [How well candidate communicated]
+
+## 🔧 Technical Evaluation
+[If technical interview:]
+1. **Technical Skills Assessed**
+   - **Area**: [Programming, system design, debugging, etc.]
+   - **Performance**: [Strong, adequate, weak]
+   - **Specific Topics**: [Languages, frameworks, concepts covered]
+
+2. **Problem-Solving Approach**
+   - **Methodology**: [How candidate approached problems]
+   - **Code Quality**: [If coding was involved]
+   - **Architecture Thinking**: [System design capabilities]
+
+## 💼 Experience & Background
+[Professional assessment only:]
+- **Relevant Experience**: [Years and type of relevant experience]
+- **Project Experience**: [Types of projects worked on]
+- **Technology Stack**: [Familiar technologies and tools]
+- **Leadership Experience**: [If applicable for the role]
+
+## ✅ Interview Action Items
+[CRITICAL: Next steps in hiring process:]
+1. [Follow-up interview to schedule] (Owner: [Interviewer], By: [Date])
+2. [Additional assessment or test] (Owner: [HR/Hiring Manager], Timeline: [When])
+3. [Reference checks to conduct] (Owner: [HR], By: [Date])
+4. [Hiring decision meeting] (Owner: [Hiring Manager], Schedule: [When])
+5. [Feedback compilation] (Owner: [Recruiter], Due: [Date])
+
+## 📋 Interview Feedback Summary
+[Interviewer consensus and recommendations:]
+- **Strengths Identified**: [Key positive attributes]
+- **Areas of Concern**: [Gaps or weaknesses noted]
+- **Recommendation**: [Proceed/Pass/Further Assessment]
+- **Salary/Level Recommendation**: [If discussed]
+
+## 🔄 Next Steps in Hiring Process
+- [Additional interview rounds needed]
+- [Timeline for final decision]
+- [References to check]
+- [Offer preparation if positive]
+
+## 📝 Notes for Hiring Team
+[Important context for decision makers:]
+- [Key considerations for hiring decision]
+- [Comparison to role requirements]
+- [Unique factors to consider]
+
+## ⚠️ Privacy & Confidentiality
+[This section intentionally minimal to protect candidate privacy]
+
+CRITICAL REQUIREMENTS FOR INTERVIEWS:
+- MUST focus on professional assessment, not personal details
+- MUST capture technical evaluation and competency assessment
+- MUST extract ALL next steps in hiring process with ownership
+- MUST provide clear recommendation (proceed/pass/further assessment)
+- MUST maintain candidate privacy and confidentiality
+- Focus on job-relevant evaluation criteria
+- Be objective and professional in assessment language
+- Maximum 800 words - interviews should be concise evaluations
+- Avoid any discriminatory or personal information 
