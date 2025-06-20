@@ -45,5 +45,3 @@ python src/main.py
 - **V3**: Calendar sync, Slack notifications
 
 ---
-
-*Built with ❤️ for busy professionals who value their meeting insights* 
